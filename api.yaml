@@ -1,0 +1,158 @@
+swagger: "2.0"
+
+info:
+  version: "1.0"
+  title: Montyserver API
+  description: Montyserver est un serveur Python qui a pour but de faire des opérations en appelant directement les API Openstack.
+
+schemes:
+  - http
+host: localhost:11500
+basePath: /api/1.0
+
+paths: 
+  /neutron/ports:
+    post:
+      summary: Create new neutron port 
+      description: Returns a list containing all ports.
+      tags: [neutron resources]
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+          - in: "body"
+            required: true
+            name: "body"
+            description: "Resource playload"
+            schema:
+              $ref: "#/definitions/Resource"  
+      responses:
+        200:
+          description: Ports list
+          
+        401: 
+          description: Authentification fieled
+        500: 
+          description: Server error
+        405: 
+          description: Methode not allowed
+          
+  /neutron/routers:
+    post:
+      summary: Create new neutron router 
+      description: Returns a list containing all routers.
+      tags: [neutron resources]
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+          - in: "body"
+            required: true
+            name: "body"
+            description: "Resource playload"
+            schema:
+              $ref: "#/definitions/Resource"  
+      responses:
+        200:
+          description: Router list
+          
+        400: 
+          description: Authentification fieled
+        500: 
+          description: Server error
+          
+  /neutron/lb/members:
+    post:
+      summary: Create new neutron lbaas member 
+      description: Returns a list containing all lbaas members.
+      tags: [neutron resources]
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+          - in: "body"
+            required: true
+            name: "body"
+            description: "Resource playload"
+            schema:
+              $ref: "#/definitions/Resource"  
+      responses:
+        200:
+          description: Router list
+          
+        400: 
+          description: Authentification fieled
+        500: 
+          description: Server error
+          
+  /neutron/lb/pools:
+    post:
+      summary: Create new neutron lbaas pool 
+      description: Returns a list containing all lbaas pools.
+      tags: [neutron resources]
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+          - in: "body"
+            required: true
+            name: "body"
+            description: "Resource playload"
+            schema:
+              $ref: "#/definitions/Resource"  
+      responses:
+        200:
+          description: Router list
+          
+        400: 
+          description: Authentification fieled
+        500: 
+          description: Server error
+          
+  /neutron/security-groups:
+    post:
+      summary: Create new neutron security group
+      description: Returns a list containing all security groups.
+      tags: [neutron resources]
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+          - in: "body"
+            required: true
+            name: "body"
+            description: "Resource playload"
+            schema:
+              $ref: "#/definitions/Resource"  
+      responses:
+        200:
+          description: Security groups list
+          
+        400: 
+          description: Authentification fieled
+        500: 
+          description: Server error
+
+          
+definitions:
+  Resource:
+    type: object
+    properties:
+      region:
+        type: "string"
+        description: "Region of tenant"
+        enum:
+        - "int4"
+        - "RegionOne"
+      tenant_id:
+        type : "string"
+        description : "The tenant id"
+      username:
+        type : "string"
+      password:
+        type : "string"
